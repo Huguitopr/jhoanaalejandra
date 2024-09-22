@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorpresa Especial</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6e6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .message-container {
+            max-width: 600px;
+        }
+        .message, .reveal-button {
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        .reveal-button {
+            padding: 15px 30px;
+            color: white;
+            background-color: #ff4d4d;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .question {
+            display: none;
+            font-size: 2rem;
+            margin-top: 20px;
+            color: #ff4d4d;
+        }
+        .answer-buttons {
+            display: none;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .answer-buttons button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .answer-yes {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        .answer-no {
+            background-color: #ff9999;
+            color: white;
+            position: relative;
+        }
+        @keyframes fadeInMessage {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="message-container">
+        <div class="message">Ahora la pregunta mas importante</div>
+        <button class="reveal-button" onclick="revealQuestion()">Revelar la pregunta mas importante de nuestra vida</button>
+        <div class="question">¿Quieres ser mi novia?</div>
+        <div class="answer-buttons">
+            <button class="answer-yes" onclick="redirectToThirdPage()">Sí</button>
+            <button class="answer-no" onmouseover="moveButton()">No</button>
+        </div>
+    </div>
+    <script>
+        function revealQuestion() {
+            document.querySelector('.message').style.display = 'none';
+            document.querySelector('.reveal-button').style.display = 'none';
+            document.querySelector('.question').style.display = 'block';
+            document.querySelector('.answer-buttons').style.display = 'flex';
+        }
+
+        function redirectToThirdPage() {
+            window.location.href = "aleja.html"; // Cambia "tercera_pagina.html" por la URL de tu tercera página
+        }
+
+        function moveButton() {
+            const button = document.querySelector('.answer-no');
+            const randomX = Math.floor(Math.random() * (window.innerWidth - button.offsetWidth));
+            const randomY = Math.floor(Math.random() * (window.innerHeight - button.offsetHeight));
+            button.style.position = 'absolute'; // Cambiado a absolute para un movimiento más libre
+            button.style.left = randomX + 'px';
+            button.style.top = randomY + 'px';
+        }
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Línea del Tiempo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6f2;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 2.5rem;
+            color: #cc0099;
+        }
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin: 0 auto;
+        }
+        .timeline-event {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.6s ease-out;
+        }
+        .timeline-event.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline-event:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+        .timeline-event .content {
+            width: 45%;
+            background-color: #ffb3d9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .timeline-event .content h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #99004d;
+        }
+        .timeline-event .content p {
+            font-size: 1rem;
+            margin: 10px 0;
+        }
+        .timeline-event .content img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .timeline-event .date {
+            width: 15%;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #cc0099;
+        }
+        .line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 6px;
+            height: 100%;
+            background-color: #cc0099;
+            transform: translateX(-50%);
+        }
+        @media (max-width: 768px) {
+            .timeline-event {
+                flex-direction: column;
+                align-items: center;
+            }
+            .timeline-event:nth-child(odd) {
+                flex-direction: column;
+            }
+            .timeline-event .content, .timeline-event .date {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .question-button {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            color: white;
+            background-color: #cc0099;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .question-button:hover {
+            background-color: #b30086;
+        }
+
+        /* Estilos del modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .modal-content {
+            display: block;
+            margin: 15% auto;
+            max-width: 90%;
+            max-height: 80%;
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Línea del Tiempo de Nuestra Historia</h1>
+
+    <div class="timeline-container">
+        <div class="line"></div>
+
+        <div class="timeline">
+            <!-- Primer Evento -->
+            <div class="timeline-event">
+                <div class="content">
+                    <h3>Día que comenzamos a hablar por ig</h3>
+                    <p>El día en que algo me dijo que te hablara, aunque pensé que no me fueras a responder...</p>
+                    <img src="fotos/diaquehablamos (2).jpg" alt="Momento especial" class="image">
+                </div>
+                <div class="date">17/03/2024</div>
+            </div>
+
+            <!-- Segundo Evento -->
+            <div class="timeline-event">
+                <div class="content">
+                    <h3>Primera confesión de amor</h3>
+                    <p>Aquí fue cuando te expresé lo que sentía y me dijiste que el sentimiento era mutuo, luego esos audios donde me explicabas lo que sentías. Ahí me di cuenta de que eras para mí. Yo como siempre con la mamadera de gallo.</p>
+                    <img src="fotos/hugo 400 (2).jpg" alt="Primera confesión" class="image">
+                </div>
+                <div class="date">24/03/2024</div>
+            </div>
+            <div class="timeline-event">
+                <div class="content">
+                    <h3>El fondo mas lindo</h3>
+                    <p>Aqui me hiciste el fondo de Cristiano mas lindo y descubri que ya lo habia ganado todo contigo</p>
+                    <img src="fotos/fondo.jpg" alt="Primera confesión" class="image">
+                </div>
+                <div class="date">21/04/2024</div>
+            </div>
+            <!-- Segundo Evento -->
+            <div class="timeline-event">
+                <div class="content">
+                    <h3>Nuestra primera pelea</h3>
+                    <p>Fue una tonteria pero al menos legamos a un acuerdo.</p>
+                    <img src="fotos/primera pelea.jpg" alt="Primera confesión" class="image">
+                </div>
+                <div class="date">11/05/2024</div>
+            </div>
+
+            <!-- Tercer Evento -->
+            <div class="timeline-event">
+                <div class="content">
+                    <h3>Playlist</h3>
+                    <p>La playlist que me hiciste, que se convirtió en mi favorita y con la cual te recordaré siempre.</p>
+                    <img src="fotos/playlist.jpg" alt="Playlist" class="image">
+                </div>
+                <div class="date">22/05/2024</div>
+            </div>
+            <!-- Segundo Evento -->
+            <div class="timeline-event">
+                <div class="content">
+                    <h3>Volvimos a hablar</h3>
+                    <p>Este dia fue muy importante para mi porque a pesar de que te extrañaba y te queria hablar, sabia que tenia que darte tu espacio para que pudieras reflexionar, te extrañe como no tienes idea, aprendi que aveces tambien es bueno aprender a soltar, pero espero no tener que volver a soltarte nunca.</p>
+                    <img src="fotos/comeback.jpg" alt="Primera confesión" class="image">
+                </div>
+                <div class="date">07/08/2024</div>
+            </div>
+            </div>
+            <!-- Segundo Evento -->
+            <div class="timeline-event">
+                <div class="content">
+                    <h3>Nuestra primera salida</h3>
+                    <p>Este fue uno de los mejores dias de mi vida, el que espere tanto y asi como pense que iba a ser, asi paso, fue lindo y no dejaba de pensar en lo hermosa que te habias, te queria dar muchisimos besos, pero a la vez me daba pena interrumpir que te vieras la peli, quisiera que se repitiera ese dia.</p>
+                    <img src="fotos/salida.jpg" alt="Primera confesión" class="image">
+                </div>
+                <div class="date">24/08/2024</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para mostrar imágenes en grande -->
+    <div id="imageModal" class="modal">
+        <span class="close" id="closeModal">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <!-- Botón para ir a la página de la pregunta -->
+    <div class="button-container">
+        <button class="question-button" onclick="redirectToQuestionPage()">Ahora sigamos con unas preguntas facilitas</button>
+    </div>
+
+    <script>
+        // Función para redirigir a la página de la pregunta
+        function redirectToQuestionPage() {
+            window.location.href = "index.html";
+        }
+
+        // Obtener el modal
+        var modal = document.getElementById("imageModal");
+
+        // Obtener la imagen del modal
+        var modalImage = document.getElementById("modalImage");
+
+        // Cerrar el modal cuando se presione la "x"
+        var closeModal = document.getElementById("closeModal");
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Obtener todas las imágenes en la línea del tiempo
+        var images = document.querySelectorAll('.image');
+
+        // Agregar evento click a cada imagen para abrir el modal
+        images.forEach(function(image) {
+            image.onclick = function() {
+                modal.style.display = "block";
+                modalImage.src = this.src;
+            }
+        });
+
+        // Cerrar el modal cuando el usuario haga clic fuera de la imagen
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Función para revelar eventos en scroll
+        function revealOnScroll() {
+            var reveals = document.querySelectorAll('.timeline-event');
+            var windowHeight = window.innerHeight;
+            reveals.forEach(function(reveal) {
+                var revealTop = reveal.getBoundingClientRect().top;
+                if (revealTop < windowHeight - 150) {
+                    reveal.classList.add('show');
+                }
+            });
+        }
+
+        // Detectar desplazamiento de la página
+        window.addEventListener('scroll', revealOnScroll);
+        // Revelar los eventos cuando se carga la página
+        window.addEventListener('load', revealOnScroll);
+    </script>
+</body>
+</html>

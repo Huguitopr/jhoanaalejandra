@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Bienvenida</title>
+    <style>
+        body {
+            background-color: #ffe6e6; /* Fondo suave rosado */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            border: 5px solid #ff4d4d; /* Borde rojo */
+            border-radius: 15px;
+            padding: 50px;
+            background-color: #ffcccc; /* Fondo más intenso dentro del contenedor */
+            box-shadow: 0 10px 20px rgba(255, 77, 77, 0.5); /* Sombra sutil */
+            transition: transform 0.5s ease;
+            cursor: pointer;
+        }
+        .container:hover {
+            transform: scale(1.05); /* Efecto interactivo al hacer hover */
+        }
+        .names {
+            font-size: 4rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            color: #ff1a1a; /* Rojo fuerte para los nombres */
+            opacity: 0;
+            animation: fadeInNames 2s ease-in-out forwards;
+        }
+        .names span {
+            position: relative;
+        }
+        .names span:hover {
+            color: #ff6699; /* Cambia a rosa al hacer hover */
+            transition: color 0.3s ease;
+        }
+        .message {
+            font-size: 2.5rem;
+            margin-top: 20px;
+            color: #cc0066; /* Rosa oscuro para el mensaje principal */
+            opacity: 0;
+            animation: fadeInMessage 4s ease-in-out forwards;
+        }
+        .special-message {
+            font-size: 1.7rem;
+            margin-top: 20px;
+            color: #ff4d4d; /* Rojo brillante para el mensaje especial */
+            opacity: 0;
+            animation: fadeInSpecialMessage 6s ease-in-out forwards;
+            font-style: italic;
+            transition: color 0.5s ease;
+        }
+        .special-message:hover {
+            color: #ff66b2; /* Cambia a un tono más suave al hacer hover */
+        }
+        @keyframes fadeInNames {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes fadeInMessage {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes fadeInSpecialMessage {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+    <script>
+        // Redirige a la página de la línea de tiempo cuando se haga clic en el contenedor
+        function redirectToTimeline() {
+            window.location.href = 'bienvenida.html'; // Cambia a la URL correcta de la segunda página
+        }
+    </script>
+</head>
+<body>
+    <div class="container" onclick="redirectToTimeline()">
+        <div class="names">
+            <span>Hugo</span> <span>&amp;</span> <span>Alejandra</span>
+        </div>
+        <div class="message">Un viaje especial</div>
+        <div class="special-message">
+            "Desde el primer momento en el que hable contigo, supe que eras diferente y cada día compruebo que eres única, te amo por tal y como eres. Estoy encantado de este hermoso viaje por el que hemos pasado, espero y podamos vivir muchísimas aventuras juntos."
+        </div>
+    </div>
+</body>
+</html>
